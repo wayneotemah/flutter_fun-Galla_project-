@@ -5,6 +5,6 @@ class Album {
   final image;
 
   factory Album.fromJson(Map<String, dynamic> json) {
-    return Album(image: json['title'], title: json['thumbnailUrl']);
+    return Album(image: json['thumbnailUrl'], title: json['title']);
   }
 }

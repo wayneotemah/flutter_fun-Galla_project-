@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
       builder: (context, data) {
         if (data.hasData) {
           return ListView.builder(
-              itemCount: data.data?.length,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
@@ -26,6 +26,10 @@ class Home extends StatelessWidget {
                   ],
                 );
               });
+        } else if (data.hasError) {
+          return Center(
+            child: Text('error ${data.error}'),
+          );
         } else {
           return const Center(
             child: CircularProgressIndicator(
@@ -40,6 +44,8 @@ class Home extends StatelessWidget {
   Future<List<Album>> getAlbum() async {
     var response = await http
         .get(Uri.parse("https://jsonplaceholder.typicode.com/photos"));
+    // var images = await http
+    //     .get(Uri.parse("https://picsum.photos/v2/list?page=1&limit=200"));
     if (response.statusCode == 200) {
       List jsonResonse = json.decode(response.body);
       return jsonResonse.map((album) => Album.fromJson(album)).toList();
