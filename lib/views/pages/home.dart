@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
               itemBuilder: (context, index) {
                 return Column(
                   children: [
-                    Text(data.data![index].title),
+                    Text(data.data![index].author),
                     Image.network(data.data![index].image),
                   ],
                 );
@@ -39,7 +39,7 @@ class Home extends StatelessWidget {
 
   Future<List<Album>> getAlbum() async {
     var response = await http
-        .get(Uri.parse("https://jsonplaceholder.typicode.com/photos"));
+        .get(Uri.parse("https://picsum.photos/v2/list?page=2&limit=20"));
     if (response.statusCode == 200) {
       List jsonResonse = json.decode(response.body);
       return jsonResonse.map((album) => Album.fromJson(album)).toList();
