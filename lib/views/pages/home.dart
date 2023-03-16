@@ -17,7 +17,7 @@ class Home extends StatelessWidget {
       builder: (context, data) {
         if (data.hasData) {
           return ListView.builder(
-              itemCount: data.data?.length,
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Column(
                   children: [
@@ -26,6 +26,10 @@ class Home extends StatelessWidget {
                   ],
                 );
               });
+        } else if (data.hasError) {
+          return Center(
+            child: Text('error ${data.error}'),
+          );
         } else {
           return const Center(
             child: CircularProgressIndicator(
