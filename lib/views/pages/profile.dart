@@ -1,5 +1,9 @@
-
+import 'package:ff_project/config.dart';
+import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
+
+import '../components/buttons.dart';
+import '../components/curvedimages.dart';
 
 class Profile extends StatelessWidget {
   const Profile({
@@ -8,8 +12,117 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.pink,
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50.0),
+                  child: Align(
+                    // alignment: Alignment.center,
+                    child: carvedEdgeImage(
+                      imageHeight: 200.0,
+                      imageWidth: 130.0,
+                      imageURL: 'assets/images/landimage2.jpg',
+                      radius: 100.0,
+                    ),
+                  ),
+                ),
+                titleText(text: "username", color: primaryColor),
+                const SizedBox(height: 10.0),
+                messageText(
+                    text: 'BIO: art lover, art creator, AI and ML  reseacher',
+                    color: Colors.grey),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 0.0, vertical: 30),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Column(
+                        children: [
+                          titleText(text: "200", size: 20.0),
+                          const SizedBox(height: 10.0),
+                          messageText(text: "Collections"),
+                        ],
+                      ),
+                      const Divider(
+                        endIndent: 10,
+                        indent: 10,
+                        thickness: 1.0,
+                      ),
+                      Column(children: [
+                        titleText(text: "200", size: 20.0),
+                        const SizedBox(height: 10.0),
+                        messageText(text: "Reservered"),
+                      ]),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    elevatedButton(
+                        text: 'Explore',
+                        sizeWidth: 150.0,
+                        sizeHeight: 70.0,
+                        color: Colors.grey[400]),
+                    const SizedBox(width: 10.0),
+                    elevatedButton(
+                      text: 'settins',
+                      sizeWidth: 150.0,
+                      sizeHeight: 70.0,
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 30.0),
+                SizedBox(
+                  width: 350,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Ink(
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                // shape: BoxShape.circle,
+                                borderRadius: BorderRadius.circular(15.0),
+                                border: Border.all(
+                                    color: Colors.black87,
+                                    width: 5,
+                                    style: BorderStyle.none),
+                                color: Colors.grey[200]),
+                            child: InkWell(
+                              onTap: () {},
+                              borderRadius: BorderRadius.circular(1000),
+                              child: Center(child: titleText(text: '13')),
+                            ),
+                          ),
+                          titleText(text: 'ShinCity Festival', size: 18.0),
+                          Icon(
+                            Icons.favorite,
+                            color: primaryColor,
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                )
+              ],
+              // color: Colors.pink,
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
