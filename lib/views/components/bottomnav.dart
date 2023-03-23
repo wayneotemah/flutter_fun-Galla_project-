@@ -39,15 +39,15 @@ class BottomNav extends StatelessWidget {
               text: 'Home',
             ),
             GButton(
-              icon: Icons.favorite,
-              text: 'Likes',
+              icon: Icons.account_tree_outlined,
+              text: 'Collection',
             ),
             GButton(
-              icon: Icons.search,
-              text: 'Search',
+              icon: Icons.bookmark,
+              text: 'Reserved',
             ),
             GButton(
-              icon: Icons.work,
+              icon: Icons.account_circle,
               text: 'Profile',
             ),
           ],
