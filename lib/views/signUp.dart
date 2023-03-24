@@ -9,7 +9,7 @@ import '../config.dart';
 import '../routes/routes.dart';
 import 'components/buttons.dart';
 import 'components/texts.dart';
-import 'helper/sharedPref.dart';
+import '../helper/sharedPref.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});

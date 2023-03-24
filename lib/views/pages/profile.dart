@@ -134,7 +134,7 @@ class _ProfileState extends State<Profile> {
                             ),
                           ),
                           titleText(text: 'ShinCity Festival', size: 18.0),
-                          Icon(
+                          const Icon(
                             Icons.favorite,
                             color: primaryColor,
                           )

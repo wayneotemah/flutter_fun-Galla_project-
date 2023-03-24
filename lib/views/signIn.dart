@@ -9,7 +9,7 @@ import '../config.dart';
 import 'components/buttons.dart';
 import 'components/curvedimages.dart';
 import 'components/texts.dart';
-import 'helper/sharedPref.dart';
+import '../helper/sharedPref.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
