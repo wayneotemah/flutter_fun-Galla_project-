@@ -1,7 +1,10 @@
 import 'package:ff_project/config.dart';
 import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../routes/routes.dart';
 import '../components/buttons.dart';
 import '../components/curvedimages.dart';
 
@@ -116,7 +119,21 @@ class Profile extends StatelessWidget {
                       ),
                     ),
                   ),
-                )
+                ),
+                TextButton(
+                  onPressed: () async {
+                    SharedPreferences _prefs =
+                        await SharedPreferences.getInstance();
+                    try {
+                      _prefs.remove('id');
+                      _prefs.remove('token');
+                    } catch (error) {
+                      print(error);
+                    }
+                    Get.toNamed(RoutesClass.getLoginRoute());
+                  },
+                  child: messageText(color: primaryColor, text: "logout"),
+                ),
               ],
               // color: Colors.pink,
             ),

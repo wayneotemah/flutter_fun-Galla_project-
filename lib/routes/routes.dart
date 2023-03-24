@@ -19,13 +19,13 @@ class RoutesClass {
       name: dashBoard,
     ),
     GetPage(
-      page: () => const SignInScreen(),
+      page: () => SignInScreen(),
       name: login,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
-      page: () => const SignUpScreen(),
+      page: () => SignUpScreen(),
       name: signUp,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
