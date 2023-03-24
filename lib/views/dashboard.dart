@@ -31,7 +31,7 @@ class Screen extends StatelessWidget {
   final BottomNavigationContoller bottomNavigationContoller =
       Get.put(BottomNavigationContoller());
 
-  final page = const [Home(), Collections(), Events(), Profile()];
+  final page = [const Home(), const Collections(), const Events(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Obx(

@@ -8,10 +8,34 @@ import '../../routes/routes.dart';
 import '../components/buttons.dart';
 import '../components/curvedimages.dart';
 
-class Profile extends StatelessWidget {
-  const Profile({
+class Profile extends StatefulWidget {
+  Profile({
     super.key,
   });
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  String _username = '';
+  String _email = '';
+  @override
+  void initState() {
+    super.initState();
+    _loadUserData();
+  }
+
+  _loadUserData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _email = (prefs.getString('email') ?? '');
+      _username = (prefs.getString('username') ?? '');
+    });
+  }
+
+  String username = "";
+
+  String email = "";
 
   @override
   Widget build(BuildContext context) {
@@ -34,14 +58,13 @@ class Profile extends StatelessWidget {
                     ),
                   ),
                 ),
-                titleText(text: "username", color: primaryColor),
+                const SizedBox(height: 20.0),
+                titleText(text: _username, color: primaryColor),
                 const SizedBox(height: 10.0),
-                messageText(
-                    text: 'BIO: art lover, art creator, AI and ML  reseacher',
-                    color: Colors.grey),
+                messageText(text: _email, color: Colors.grey),
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 0.0, vertical: 30),
+                      const EdgeInsets.symmetric(horizontal: 0.0, vertical: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
