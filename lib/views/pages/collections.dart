@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:ff_project/config.dart';
 import 'package:flutter/material.dart';
 
+import '../components/collections.dart';
 import '../components/texts.dart';
 
 Random random = Random();
@@ -16,55 +18,28 @@ class Collections extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: titleText(text: 'Your Collention'),
+        title: titleText(text: 'My Collention'),
+        centerTitle: true,
         backgroundColor: Color.fromRGBO(250, 250, 250, 1),
         elevation: 0.0,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-            collectionTile(),
-          ],
+      body: GridView(
+        padding: const EdgeInsets.all(25),
+        children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+            .map((catData) => Collection(
+                  color: lightTextColor,
+                  title: 'Fav',
+                  id: catData.toString(),
+                ))
+            .toList(),
+        gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+          maxCrossAxisExtent: 200,
+          childAspectRatio: 3 / 2,
+          crossAxisSpacing: 20,
+          mainAxisSpacing: 20,
         ),
       ),
     );
   }
 }
 
-class collectionTile extends StatelessWidget {
-  const collectionTile({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-      child: ListTile(
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(5.0),
-          child: Image(
-            image: NetworkImage(
-                'https://fastly.picsum.photos/id/1084/200/300.jpg?hmac=JQMQbKvpN6_d6r-fiuOEYe1Dz6f2gfGIkTvsx0nLJUQ'),
-          ),
-        ),
-        title: titleText(size: 20.0, text: "Art title"),
-        subtitle: messageText(
-            text:
-                "Art by Morale taken in 2009, in kenya. Died in Congo and was friends with KIKI"),
-      ),
-    );
-  }
-}

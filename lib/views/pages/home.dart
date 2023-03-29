@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
       builder: (context, data) {
         if (data.hasData) {
           return ListView.builder(
-              itemCount: 5,
+              itemCount: data.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(5.0),

@@ -11,7 +11,7 @@ import 'components/bottomnav.dart';
 // pages
 import 'pages/profile.dart';
 import 'pages/collections.dart';
-import 'pages/events.dart';
+import 'pages/reserved.dart';
 import 'pages/home.dart';
 
 class DashBoardScreen extends StatelessWidget {
