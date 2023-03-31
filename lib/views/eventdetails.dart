@@ -16,7 +16,6 @@ class EventDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     Organizer organizer1 = eventDetails[8]['organizer'][0];
     var _date = eventDetails[4]['date'];
-    print(organizer1.username);
     return Scaffold(
       appBar: AppBar(
         title: titleText(

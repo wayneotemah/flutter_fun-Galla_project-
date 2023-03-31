@@ -23,6 +23,7 @@ class Home extends StatelessWidget {
       builder: (context, data) {
         if (data.hasData) {
           return ListView.builder(
+              padding: const EdgeInsets.only(bottom: 100.0),
               itemCount: data.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
@@ -90,13 +91,23 @@ class Home extends StatelessWidget {
                                 const Spacer(),
                                 IconButton(
                                   color: midprimaryColor,
-                                  onPressed: () {},
                                   icon: const Icon(Icons.favorite),
+                                  onPressed: () {
+                                    createCollection(
+                                        context: context,
+                                        id: data.data![index].id.toString(),
+                                        collectionTitle: "Favorite");
+                                  },
                                 ),
                                 IconButton(
                                   color: midprimaryColor,
-                                  onPressed: () {},
                                   icon: const Icon(Icons.bookmark),
+                                  onPressed: () {
+                                    createCollection(
+                                        context: context,
+                                        id: data.data![index].id.toString(),
+                                        collectionTitle: "Reserved");
+                                  },
                                 ),
                                 IconButton(
                                   color: midprimaryColor,
@@ -142,8 +153,42 @@ class Home extends StatelessWidget {
       List jsonResonse = json.decode(response.body);
       return jsonResonse.map((event) => Event.fromJson(event)).toList();
     } else {
-      print(response.reasonPhrase);
+      // print(response.reasonPhrase);
       throw "Error reading url";
+    }
+  }
+
+  Future createCollection({
+    context,
+    id,
+    collectionTitle,
+  }) async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String _token = (_prefs.getString('token') ?? '');
+    var headersList = {'Accept': '*/*', 'Authorization': 'token $_token'};
+
+    var url = Uri.parse('$Api_url/gallary/collection/');
+
+    var body = {"title": collectionTitle, "event": id};
+
+    var response = await http.post(url, body: body, headers: headersList);
+    if (response.statusCode == 201) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text("Event $collectionTitle"),
+      ));
+    } else {
+      String? message = response.reasonPhrase;
+      // print(message);
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: Text(message!),
+        action: SnackBarAction(
+          textColor: primaryColor,
+          label: 'Try Again',
+          onPressed: () {},
+        ),
+      ));
     }
   }
 }
