@@ -112,12 +112,12 @@ class SignUpScreen extends StatelessWidget {
                   messageText(
                       color: textColor, text: "Already have an account?"),
                   TextButton(
+                    child: messageText(color: primaryColor, text: "Login"),
                     onPressed: () {
                       Get.toNamed(
                         RoutesClass.getLoginRoute(),
                       );
                     },
-                    child: messageText(color: primaryColor, text: "Login"),
                   ),
                 ],
               ),

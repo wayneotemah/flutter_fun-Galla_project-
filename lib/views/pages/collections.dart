@@ -25,7 +25,7 @@ class Collections extends StatelessWidget {
       ),
       body: GridView(
         padding: const EdgeInsets.all(25),
-        children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+        children: [1, 2, 3, 4, 5, 6, 7] //repplace with funtion the gets data array and pases it to the object
             .map((catData) => Collection(
                   color: lightTextColor,
                   title: 'Fav',
@@ -34,12 +34,11 @@ class Collections extends StatelessWidget {
             .toList(),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
           maxCrossAxisExtent: 200,
-          childAspectRatio: 3 / 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
+          childAspectRatio: 3 / 4,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 5,
         ),
       ),
     );
   }
 }
-

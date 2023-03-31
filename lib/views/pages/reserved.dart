@@ -14,12 +14,12 @@ class Events extends StatelessWidget {
       appBar: AppBar(
         title: titleText(text: 'Reserved'),
         centerTitle: true,
-        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          children: const [
             CollectionTile(),
             CollectionTile(),
             CollectionTile(),

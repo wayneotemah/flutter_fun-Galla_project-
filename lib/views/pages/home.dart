@@ -3,10 +3,12 @@ import 'dart:convert';
 import 'package:ff_project/config.dart';
 import 'package:ff_project/models/album.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../models/events.dart';
+import '../../routes/routes.dart';
 import '../components/texts.dart';
 
 class Home extends StatelessWidget {
@@ -31,10 +33,26 @@ class Home extends StatelessWidget {
                       titleText(text: data.data![index].eventName, size: 20.0),
                       ClipRRect(
                         borderRadius: BorderRadius.circular(5.0),
-                        child: Image(
-                          image: NetworkImage(
-                            data.data![index].imageUrl,
+                        child: GestureDetector(
+                          child: Image(
+                            image: NetworkImage(
+                              data.data![index].imageUrl,
+                            ),
                           ),
+                          onTap: () {
+                            Get.toNamed(RoutesClass.getEventDetails(),
+                                arguments: [
+                                  {"eventname": data.data![index].eventName},
+                                  {"image": data.data![index].imageUrl},
+                                  {"details": data.data![index].discription},
+                                  {"location": data.data![index].location},
+                                  {"date": data.data![index].date},
+                                  {"time": data.data![index].time},
+                                  {"duration": data.data![index].duration},
+                                  {"inperson": data.data![index].inperson},
+                                  {"organizer": data.data![index].organizer},
+                                ]);
+                          },
                         ),
                       ),
                       Row(

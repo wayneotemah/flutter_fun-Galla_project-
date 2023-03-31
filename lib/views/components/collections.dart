@@ -22,12 +22,13 @@ class Collection extends StatelessWidget {
           style: Theme.of(context).textTheme.titleMedium,
         ),
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color.withOpacity(.7), color],
-              begin: Alignment.topLeft,
-              end: Alignment.topRight,
-            ),
-            borderRadius: BorderRadius.circular(15)),
+          gradient: LinearGradient(
+            colors: [color.withOpacity(.7), color],
+            begin: Alignment.topLeft,
+            end: Alignment.topRight,
+          ),
+          borderRadius: BorderRadius.circular(15),
+        ),
       ),
     );
   }
