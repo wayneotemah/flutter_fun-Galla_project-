@@ -175,7 +175,7 @@ class Home extends StatelessWidget {
     if (response.statusCode == 201) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         behavior: SnackBarBehavior.floating,
-        content: Text("Event $collectionTitle"),
+        content: Text("Added to $collectionTitle"),
       ));
     } else {
       String? message = response.reasonPhrase;
