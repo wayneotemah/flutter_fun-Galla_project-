@@ -7,12 +7,13 @@ ElevatedButton elevatedButton(
     sizeWidth = 400.0,
     text,
     color = primaryColor,
+    radius = 32.0,
     function = functionholder}) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
         backgroundColor: color,
         shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(radius)),
         minimumSize: Size(sizeWidth, sizeHeight)),
     onPressed: function,
     child: Text(

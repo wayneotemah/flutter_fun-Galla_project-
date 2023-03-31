@@ -98,7 +98,7 @@ class _ProfileState extends State<Profile> {
                         color: Colors.grey[400]),
                     const SizedBox(width: 10.0),
                     elevatedButton(
-                      text: 'settins',
+                      text: 'Settings',
                       sizeWidth: 150.0,
                       sizeHeight: 70.0,
                     ),

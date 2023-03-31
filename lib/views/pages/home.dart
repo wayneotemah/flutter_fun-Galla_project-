@@ -66,7 +66,7 @@ class Home extends StatelessWidget {
                           IconButton(
                             color: primaryColor,
                             onPressed: () {},
-                            icon: const Icon(Icons.comment),
+                            icon: const Icon(Icons.bookmark),
                           ),
                           IconButton(
                             color: primaryColor,
