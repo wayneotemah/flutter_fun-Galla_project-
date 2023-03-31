@@ -19,10 +19,12 @@ class EventDetails extends StatelessWidget {
     print(organizer1.username);
     return Scaffold(
       appBar: AppBar(
-        title: Text(eventDetails[0]['eventname'].toString()),
+        title: titleText(
+          text: eventDetails[0]['eventname'].toString(),
+        ),
         centerTitle: true,
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+        backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
         foregroundColor: Colors.black,
       ),
       body: SafeArea(
@@ -40,17 +42,24 @@ class EventDetails extends StatelessWidget {
                             NetworkImage(eventDetails[1]['image'].toString())),
                   ),
                 ),
-                Column(
-                  children: [
-                    titleText(text: eventDetails[0]['eventname'].toString()),
-                    TextButton(
-                      onPressed: () {},
-                      child: messageText(
-                          text: organizer1.username,
-                          color: primaryColor,
-                          weight: FontWeight.bold),
-                    )
-                  ],
+                SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: [
+                        titleText(
+                            text: eventDetails[0]['eventname'].toString()),
+                        TextButton(
+                          onPressed: () {},
+                          child: messageText(
+                              text: "organized by ${organizer1.username}",
+                              color: primaryColor,
+                              weight: FontWeight.bold),
+                        )
+                      ],
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: double.infinity,

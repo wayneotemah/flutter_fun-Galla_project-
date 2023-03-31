@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 Text titleText({size = 30.0, text, color = Colors.black}) {
   return Text(
     text,
+    // maxLines: 2,
+    overflow: TextOverflow.fade,
     style: TextStyle(
       fontSize: size,
       fontWeight: FontWeight.bold,

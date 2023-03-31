@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:ff_project/config.dart';
-import 'package:ff_project/models/album.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -26,13 +26,14 @@ class Home extends StatelessWidget {
               itemCount: data.data!.length,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.all(5.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      titleText(text: data.data![index].eventName, size: 20.0),
                       ClipRRect(
-                        borderRadius: BorderRadius.circular(5.0),
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(15),
+                            topRight: Radius.circular(15)),
                         child: GestureDetector(
                           child: Image(
                             image: NetworkImage(
@@ -55,25 +56,57 @@ class Home extends StatelessWidget {
                           },
                         ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          IconButton(
-                            color: primaryColor,
-                            onPressed: () {},
-                            icon: const Icon(Icons.favorite),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Card(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(15),
+                                bottomRight: Radius.circular(15)),
                           ),
-                          IconButton(
-                            color: primaryColor,
-                            onPressed: () {},
-                            icon: const Icon(Icons.bookmark),
+                          margin: const EdgeInsets.all(0.0),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 200.0,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      titleText(
+                                          text: data.data![index].eventName,
+                                          size: 20.0),
+                                      const SizedBox(height: 6),
+                                      messageText(
+                                        text: DateFormat('EEEE, d MMMM y')
+                                            .format(data.data![index].date),
+                                        color: lightTextColor,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                const Spacer(),
+                                IconButton(
+                                  color: midprimaryColor,
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.favorite),
+                                ),
+                                IconButton(
+                                  color: midprimaryColor,
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.bookmark),
+                                ),
+                                IconButton(
+                                  color: midprimaryColor,
+                                  onPressed: () {},
+                                  icon: const Icon(Icons.share),
+                                )
+                              ],
+                            ),
                           ),
-                          IconButton(
-                            color: primaryColor,
-                            onPressed: () {},
-                            icon: const Icon(Icons.share),
-                          )
-                        ],
+                        ),
                       ),
                       const Divider(
                         endIndent: 10,
