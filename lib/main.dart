@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: RoutesClass.getLoginRoute(),
+      initialRoute: RoutesClass.getDashBoardRoute(),
       getPages: RoutesClass.routes,
     );
   }

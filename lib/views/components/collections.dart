@@ -33,13 +33,13 @@ class CollectionTile extends StatelessWidget {
         padding: const EdgeInsets.all(15),
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [color.withOpacity(1), color],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
+            colors: [color.withOpacity(0.1), color],
+            begin: Alignment.bottomRight,
+            end: Alignment.topLeft,
           ),
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              image: NetworkImage(image_url), fit: BoxFit.cover),
+              opacity: 0.3, image: NetworkImage(image_url), fit: BoxFit.cover),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
