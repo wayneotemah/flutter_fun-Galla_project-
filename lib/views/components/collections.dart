@@ -1,15 +1,19 @@
-import 'dart:ffi';
+import 'package:get/get.dart';
 
 import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
 
 import '../../config.dart';
+import 'package:ff_project/routes/routes.dart';
+
+import '../../models/events.dart';
 
 String image_url =
     "https://fastly.picsum.photos/id/238/200/300.jpg?hmac=WF3u-tnO4aoQvz_F9p7zS0Dr5LwGx74tPabQf7EjHkw";
 
 class CollectionTile extends StatelessWidget {
   final String title;
+  final dynamic events;
   final Color color;
   int number;
   // final String id;
@@ -18,16 +22,23 @@ class CollectionTile extends StatelessWidget {
     super.key,
     required this.title,
     required this.number,
+    required this.events,
     this.color = lightprimaryColor,
   });
 
-  void selectCategory(BuildContext ctx) {}
+  void selectCategory() {
+    Event eventL = events[0];
+    Get.toNamed(RoutesClass.getCollectionListScreen());
+    print(eventL.location);
+  }
 
   @override
   Widget build(BuildContext context) {
+    Event eventL = events[0];
+
     return InkWell(
-      onTap: () => selectCategory(context),
-      splashColor: Theme.of(context).colorScheme.primary,
+      onTap: selectCategory,
+      splashColor: midprimaryColor,
       borderRadius: BorderRadius.circular(15),
       child: Container(
         padding: const EdgeInsets.all(15),
@@ -39,7 +50,10 @@ class CollectionTile extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(15),
           image: DecorationImage(
-              opacity: 0.3, image: NetworkImage(image_url), fit: BoxFit.cover),
+            opacity: 0.7,
+            image: NetworkImage(image_url),
+            fit: BoxFit.cover,
+          ),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

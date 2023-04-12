@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'dart:convert';
 import 'package:ff_project/config.dart';
 import 'package:flutter/material.dart';
@@ -9,9 +7,6 @@ import 'package:http/http.dart' as http;
 import '../../models/events.dart';
 import '../components/collections.dart';
 import '../components/texts.dart';
-
-Random random = Random();
-int randomNumber = random.nextInt(100);
 
 class Collections extends StatelessWidget {
   const Collections({
@@ -38,6 +33,7 @@ class Collections extends StatelessWidget {
                 return CollectionTile(
                   title: data.data![index].title.toString(),
                   number: data.data![index].number,
+                  events: data.data![index].event,
                 );
               },
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(

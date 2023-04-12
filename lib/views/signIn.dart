@@ -204,7 +204,7 @@ class SignInScreen extends StatelessWidget {
           ));
         }
       } catch (error) {
-        throw error; // prints the error message
+        rethrow; // prints the error message
       }
     }
   }
