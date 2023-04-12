@@ -11,7 +11,6 @@ import 'components/bottomnav.dart';
 // pages
 import 'pages/profile.dart';
 import 'pages/collections.dart';
-import 'pages/reserved.dart';
 import 'pages/home.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -31,7 +30,7 @@ class Screen extends StatelessWidget {
   final BottomNavigationContoller bottomNavigationContoller =
       Get.put(BottomNavigationContoller());
 
-  final page = [const Home(), const Collections(), const Events(), Profile()];
+  final page = [const Home(), const Collections(), Profile()];
   @override
   Widget build(BuildContext context) {
     return Obx(

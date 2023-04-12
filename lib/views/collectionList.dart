@@ -2,6 +2,7 @@ import 'package:ff_project/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import 'components/collectionTile.dart';
 import 'components/texts.dart';
 
 String image_url =
@@ -9,12 +10,13 @@ String image_url =
 
 class CollectionListScreen extends StatelessWidget {
   CollectionListScreen({super.key});
+  var orientation, size, height, width;
 
   var collection = Get.arguments;
-  var orientation, size, height, width;
 
   @override
   Widget build(BuildContext context) {
+    var items = collection[0]['events'];
     size = MediaQuery.of(context).size;
     height = size.height;
     width = size.width;
@@ -67,7 +69,23 @@ class CollectionListScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Container()
+            const SizedBox(height: 10.0),
+            Expanded(
+                child: ListView.builder(
+              // Let the ListView know how many items it needs to build.
+              itemCount: items.length,
+              // Provide a builder function. This is where the magic happens.
+              // Convert each item into a widget based on the type of item it is.
+              itemBuilder: (context, index) {
+                final item = items[index];
+
+                return CollectionTile(
+                  image_url: item.imageUrl,
+                  title: item.eventName,
+                  description: item.discription,
+                );
+              },
+            )),
           ],
         ),
       ),

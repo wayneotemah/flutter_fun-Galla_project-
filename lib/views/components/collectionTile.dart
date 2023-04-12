@@ -2,9 +2,16 @@ import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
 
 class CollectionTile extends StatelessWidget {
-  const CollectionTile({
+  CollectionTile({
     super.key,
+    required this.image_url,
+    required this.title,
+    required this.description,
   });
+
+  final String image_url;
+  final String title;
+  final String description;
 
   @override
   Widget build(BuildContext context) {
@@ -14,14 +21,14 @@ class CollectionTile extends StatelessWidget {
         leading: ClipRRect(
           borderRadius: BorderRadius.circular(5.0),
           child: Image(
-            image: NetworkImage(
-                'https://fastly.picsum.photos/id/1084/200/300.jpg?hmac=JQMQbKvpN6_d6r-fiuOEYe1Dz6f2gfGIkTvsx0nLJUQ'),
+            width: 60.0,
+            height: 100,
+            image: NetworkImage(image_url),
+            fit: BoxFit.cover,
           ),
         ),
-        title: titleText(size: 20.0, text: "Art title"),
-        subtitle: messageText(
-            text:
-                "Art by Morale taken in 2009, in kenya. Died in Congo and was friends with KIKI"),
+        title: titleText(size: 20.0, text: title),
+        subtitle: messageText(text: description, maxLines: 2),
       ),
     );
   }

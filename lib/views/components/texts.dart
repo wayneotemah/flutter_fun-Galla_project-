@@ -14,10 +14,10 @@ Text titleText({size = 30.0, text, color = Colors.black}) {
   );
 }
 
-Text messageText({color, text, weight = FontWeight.normal}) {
+Text messageText({color, text, weight = FontWeight.normal, maxLines = 5}) {
   return Text(
     text,
-    maxLines: 5,
+    maxLines: maxLines,
     overflow: TextOverflow.fade,
     style: TextStyle(color: color, fontWeight: weight, fontFamily: 'Poppins'),
   );

@@ -43,10 +43,6 @@ class BottomNav extends StatelessWidget {
               text: 'Collection',
             ),
             GButton(
-              icon: Icons.bookmark,
-              text: 'Reserved',
-            ),
-            GButton(
               icon: Icons.account_circle,
               text: 'Profile',
             ),
