@@ -43,7 +43,7 @@ class RoutesClass {
       transitionDuration: const Duration(milliseconds: 500),
     ),
     GetPage(
-      page: () => const CollectionListScreen(),
+      page: () => CollectionListScreen(),
       name: collectionList,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),

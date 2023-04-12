@@ -27,9 +27,10 @@ class CollectionTile extends StatelessWidget {
   });
 
   void selectCategory() {
-    Event eventL = events[0];
-    Get.toNamed(RoutesClass.getCollectionListScreen());
-    print(eventL.location);
+    Get.toNamed(RoutesClass.getCollectionListScreen(), arguments: [
+      {"events": events},
+      {"title": title}
+    ]);
   }
 
   @override
