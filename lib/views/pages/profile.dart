@@ -98,7 +98,10 @@ class _ProfileState extends State<Profile> {
                         color: Colors.grey[400]),
                     const SizedBox(width: 10.0),
                     elevatedButton(
-                      text: 'Settings',
+                      function: () {
+                        Get.toNamed(RoutesClass.uploadpage);
+                      },
+                      text: 'Create event',
                       sizeWidth: 150.0,
                       sizeHeight: 70.0,
                     ),

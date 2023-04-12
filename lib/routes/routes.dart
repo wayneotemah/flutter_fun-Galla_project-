@@ -5,6 +5,7 @@ import '../views/dashboard.dart';
 import '../views/eventdetails.dart';
 import '../views/signUp.dart';
 import '../views/signIn.dart';
+import '../views/uploadpage.dart';
 
 class RoutesClass {
   static String dashBoard = '/dashBoard';
@@ -12,12 +13,14 @@ class RoutesClass {
   static String signUp = '/signUp';
   static String eventDetails = '/eventDetails';
   static String collectionList = '/collectionList';
+  static String uploadpage = '/uploadpage';
 
   static String getLoginRoute() => login;
   static String getSingUpRoute() => signUp;
   static String getDashBoardRoute() => dashBoard;
   static String getEventDetails() => eventDetails;
   static String getCollectionListScreen() => collectionList;
+  static String getUploadPage() => uploadpage;
 
   static List<GetPage> routes = [
     GetPage(
@@ -45,6 +48,12 @@ class RoutesClass {
     GetPage(
       page: () => CollectionListScreen(),
       name: collectionList,
+      transition: Transition.fadeIn,
+      transitionDuration: const Duration(milliseconds: 500),
+    ),
+    GetPage(
+      page: () => UploadPage(),
+      name: uploadpage,
       transition: Transition.fadeIn,
       transitionDuration: const Duration(milliseconds: 500),
     )
