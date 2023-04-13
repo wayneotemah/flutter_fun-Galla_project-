@@ -1,7 +1,10 @@
 import 'package:ff_project/config.dart';
+import 'dart:convert';
 import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../routes/routes.dart';
@@ -19,6 +22,9 @@ class Profile extends StatefulWidget {
 class _ProfileState extends State<Profile> {
   String _username = '';
   String _email = '';
+  int _reserved = 0;
+  int _created_by_me = 0;
+
   @override
   void initState() {
     super.initState();
@@ -26,11 +32,30 @@ class _ProfileState extends State<Profile> {
   }
 
   _loadUserData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _email = (prefs.getString('email') ?? '');
-      _username = (prefs.getString('username') ?? '');
-    });
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String _token = (_prefs.getString('token') ?? '');
+    var headersList = {'Accept': '*/*', 'Authorization': 'token $_token'};
+
+    var url = Uri.parse('$Api_url/user/profileStats/');
+
+    var response = await http.get(url, headers: headersList);
+    if (response.statusCode == 200) {
+      Map<dynamic, dynamic> resJson = json.decode(response.body);
+      setState(() {
+        print(resJson);
+        _reserved = resJson['reservations'];
+        _created_by_me = resJson['created_by_me'];
+
+        _email = resJson['email'];
+        _username = resJson['username'];
+      });
+    } else {
+      // throw "Error reading url";
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        behavior: SnackBarBehavior.floating,
+        content: const Text('Cant get profile info, you are online'),
+      ));
+    }
   }
 
   String username = "";
@@ -70,9 +95,10 @@ class _ProfileState extends State<Profile> {
                     children: [
                       Column(
                         children: [
-                          titleText(text: "200", size: 20.0),
+                          titleText(
+                              text: _created_by_me.toString(), size: 20.0),
                           const SizedBox(height: 10.0),
-                          messageText(text: "Collections"),
+                          messageText(text: "My Events"),
                         ],
                       ),
                       const Divider(
@@ -81,7 +107,7 @@ class _ProfileState extends State<Profile> {
                         thickness: 1.0,
                       ),
                       Column(children: [
-                        titleText(text: "200", size: 20.0),
+                        titleText(text: _reserved.toString(), size: 20.0),
                         const SizedBox(height: 10.0),
                         messageText(text: "Reservered"),
                       ]),
