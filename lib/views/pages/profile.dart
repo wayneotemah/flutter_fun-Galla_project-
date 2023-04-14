@@ -2,6 +2,7 @@ import 'package:ff_project/config.dart';
 import 'dart:convert';
 import 'package:ff_project/views/components/texts.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -42,7 +43,6 @@ class _ProfileState extends State<Profile> {
     if (response.statusCode == 200) {
       Map<dynamic, dynamic> resJson = json.decode(response.body);
       setState(() {
-        print(resJson);
         _reserved = resJson['reservations'];
         _created_by_me = resJson['created_by_me'];
 
@@ -75,11 +75,10 @@ class _ProfileState extends State<Profile> {
                   borderRadius: BorderRadius.circular(50.0),
                   child: Align(
                     // alignment: Alignment.center,
-                    child: carvedEdgeImage(
-                      imageHeight: 200.0,
-                      imageWidth: 130.0,
-                      imageURL: 'assets/images/landimage2.jpg',
-                      radius: 100.0,
+                    child: SvgPicture.asset(
+                      'assets/images/logo.svg',
+                      width: 200,
+                      height: 200,
                     ),
                   ),
                 ),
@@ -114,26 +113,27 @@ class _ProfileState extends State<Profile> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    // elevatedButton(
+                    //     text: 'Explore',
+                    //     sizeWidth: 150.0,
+                    //     sizeHeight: 70.0,
+                    //     color: Colors.grey[400]),
+                    // const SizedBox(width: 10.0),
                     elevatedButton(
-                        text: 'Explore',
+                        function: () {
+                          Get.toNamed(RoutesClass.uploadpage);
+                        },
+                        text: 'Create event',
                         sizeWidth: 150.0,
                         sizeHeight: 70.0,
-                        color: Colors.grey[400]),
-                    const SizedBox(width: 10.0),
-                    elevatedButton(
-                      function: () {
-                        Get.toNamed(RoutesClass.uploadpage);
-                      },
-                      text: 'Create event',
-                      sizeWidth: 150.0,
-                      sizeHeight: 70.0,
-                    ),
+                        radius: 15.0),
                   ],
                 ),
-                const SizedBox(height: 30.0),
+                const SizedBox(height: 20.0),
                 SizedBox(
                   width: 350,
                   child: Card(
@@ -149,7 +149,6 @@ class _ProfileState extends State<Profile> {
                             width: 60,
                             height: 60,
                             decoration: BoxDecoration(
-                                // shape: BoxShape.circle,
                                 borderRadius: BorderRadius.circular(15.0),
                                 border: Border.all(
                                     color: Colors.black87,
@@ -179,15 +178,17 @@ class _ProfileState extends State<Profile> {
                     try {
                       _prefs.remove('id');
                       _prefs.remove('token');
+                      _prefs.remove('reserved');
+                      _prefs.remove('username');
+                      _prefs.remove('email');
                     } catch (error) {
-                      print(error);
+                      rethrow;
                     }
                     Get.toNamed(RoutesClass.getLoginRoute());
                   },
                   child: messageText(color: primaryColor, text: "logout"),
                 ),
               ],
-              // color: Colors.pink,
             ),
           ),
         ),

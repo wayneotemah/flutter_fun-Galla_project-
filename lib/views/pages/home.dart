@@ -179,7 +179,6 @@ class Home extends StatelessWidget {
       ));
     } else {
       String? message = response.reasonPhrase;
-      // print(message);
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         behavior: SnackBarBehavior.floating,
         content: Text(message!),
