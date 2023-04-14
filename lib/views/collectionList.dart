@@ -1,7 +1,10 @@
 import 'package:ff_project/config.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
 
+import '../routes/routes.dart';
 import 'components/collectionTile.dart';
 import 'components/texts.dart';
 
@@ -13,6 +16,26 @@ class CollectionListScreen extends StatelessWidget {
   var orientation, size, height, width;
 
   var collection = Get.arguments;
+
+  Future<void> delColletion() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    String _token = (_prefs.getString('token') ?? '');
+    var headersList = {'Accept': '*/*', 'Authorization': 'token $_token'};
+    var body = {
+      "title": collection[1]['title'].toString(),
+    };
+    var response = await http.post(
+      Uri.parse("$Api_url/gallary/collection/delete/"),
+      headers: headersList,
+      body: body,
+    );
+    if (response.statusCode == 202) {
+      Get.toNamed(RoutesClass.getDashBoardRoute());
+    } else {
+      // print(response.reasonPhrase);
+      throw "Error reading url";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +50,25 @@ class CollectionListScreen extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
         elevation: 0.0,
+        actions: [
+          IconButton(
+              color: primaryColor,
+              icon: Icon(Icons.delete_outline),
+              onPressed: () {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  behavior: SnackBarBehavior.floating,
+                  duration: Duration(seconds: 30),
+                  content: Text('Do you want to delete this collection?'),
+                  action: SnackBarAction(
+                    textColor: primaryColor,
+                    label: 'Yes',
+                    onPressed: () {
+                      delColletion();
+                    },
+                  ),
+                ));
+              }),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),

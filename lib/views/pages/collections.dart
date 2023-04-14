@@ -21,6 +21,7 @@ class Collections extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
         elevation: 0.0,
+        
       ),
       body: FutureBuilder(
         future: getColletion(),
